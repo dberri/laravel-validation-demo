@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateBirdSightingRequest;
 use App\Models\BirdSighting;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,9 @@ class BirdSightingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(CreateBirdSightingRequest $request)
     {
-        $sighting = BirdSighting::create($request->all());
+        $sighting = BirdSighting::create($request->validated());
         return response()->json($sighting, 201);
     }
 
